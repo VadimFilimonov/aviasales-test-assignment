@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import logo from "./logo.png";
+import "fontsource-open-sans/400-normal.css"
+import "fontsource-open-sans/600-normal.css"
 
 const StyledApp = styled.div`
   display: grid;
