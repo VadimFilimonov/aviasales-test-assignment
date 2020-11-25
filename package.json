@@ -17,7 +17,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint:css": "stylelint './src/**/*.js'"
   },
   "eslintConfig": {
     "extends": [
@@ -36,5 +37,17 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "prettier": "^2.2.0",
+    "stylelint": "^13.8.0",
+    "stylelint-config-airbnb": "0.0.0",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-order": "^4.1.0",
+    "stylelint-prettier": "^1.1.2",
+    "stylelint-processor-styled-components": "^1.10.0",
+    "stylelint-scss": "^3.18.0"
   }
 }

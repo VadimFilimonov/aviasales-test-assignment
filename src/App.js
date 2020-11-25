@@ -1,24 +1,23 @@
 import styled from "styled-components";
 import logo from "./logo.png";
-import "fontsource-open-sans/400-normal.css"
-import "fontsource-open-sans/600-normal.css"
+import "fontsource-open-sans/400-normal.css";
+import "fontsource-open-sans/600-normal.css";
 
 const StyledApp = styled.div`
   display: grid;
-  grid-template-areas:
-    "header header"
+  grid-template-areas: "header header"
     "aside main";
   grid-template-columns: 230px 1fr;
+  align-content: start;
+  min-height: 100vh;
+  padding: 50px 100px 120px;
   column-gap: 20px;
   row-gap: 60px;
-  min-height: 100vh;
-  align-content: start;
-  padding: 50px 100px 120px;
 `;
 
 const Header = styled.header`
-  grid-area: header;
   display: flex;
+  grid-area: header;
   justify-content: center;
 `;
 
@@ -31,54 +30,54 @@ const Aside = styled.aside`
 `;
 
 const Sidebar = styled.section`
-  background: #fff;
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
   padding: 20px 0;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, .1);
 `;
 
 const SidebarTitle = styled.h2`
-  color: #4a4a4a;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  line-height: 1;
-  text-transform: uppercase;
   box-sizing: border-box;
-  padding: 0 20px;
   margin: 0 0 20px;
+  padding: 0 20px;
+  color: #4a4a4a;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: .5px;
+  text-transform: uppercase;
 `;
 
 const SidebarCheckbox = styled.input`
   position: absolute;
-  clip: rect(0 0 0 0);
   width: 1px;
   height: 1px;
   margin: -1px;
+  clip: rect(0 0 0 0);
 `;
 
 const SidebarLabel = styled.label`
   position: relative;
-  font-size: 13px;
   display: block;
-  color: #4a4a4a;
-  line-height: 40px;
   box-sizing: border-box;
   padding: 0 20px 0 50px;
+  color: #4a4a4a;
+  font-size: 13px;
+  line-height: 40px;
   cursor: pointer;
   user-select: none;
 
   &:before {
-    content: "";
     position: absolute;
-    width: 20px;
-    height: 20px;
     top: 50%;
     left: 20px;
+    box-sizing: border-box;
+    width: 20px;
+    height: 20px;
     margin-top: -10px;
     border: 1px solid #9abbce;
     border-radius: 2px;
-    box-sizing: border-box;
+    content: "";
   }
 
   &:hover {
@@ -91,9 +90,9 @@ const SidebarLabel = styled.label`
 
   ${SidebarCheckbox}:checked + &:before {
     background-image: url("/images/checked.svg");
+    background-repeat: no-repeat;
     background-position: center;
     background-size: 12px auto;
-    background-repeat: no-repeat;
     border-color: #2196f3;
   }
 `;

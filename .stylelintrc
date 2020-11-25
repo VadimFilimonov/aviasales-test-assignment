@@ -1,0 +1,11 @@
+{
+  "processors": [
+    "stylelint-processor-styled-components"
+  ],
+  "extends": [
+    "stylelint-config-airbnb",
+    "stylelint-config-rational-order",
+    "stylelint-config-styled-components",
+  ],
+  "plugins": ["stylelint-order", "stylelint-scss"],
+}
