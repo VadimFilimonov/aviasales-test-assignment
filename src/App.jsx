@@ -10,8 +10,11 @@ const StyledApp = styled.div`
     "aside main";
   grid-template-columns: 230px 1fr;
   align-content: start;
+  box-sizing: border-box;
+  max-width: 755px;
   min-height: 100vh;
-  padding: 50px 100px 120px;
+  margin: 0 auto;
+  padding: 50px 0 120px;
   column-gap: 20px;
   row-gap: 60px;
 `;
@@ -98,6 +101,44 @@ const SidebarLabel = styled.label`
   }
 `;
 
+const Card = styled.article`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, .1);
+`;
+
+const Price = styled.div`
+  color: #2196f3;
+  font-weight: 600;
+  font-size: 24px;
+`;
+
+const InfoList = styled.dl`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  font-weight: 600;
+  column-gap: 20px;
+`;
+
+const InfoTitle = styled.dt`
+  color: #a0b0b9;
+  font-size: 12px;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+`;
+
+const InfoDescription = styled.dd`
+  margin: 0;
+  color: #4a4a4a;
+  font-size: 14px;
+`;
+
 function App() {
   return (
     <StyledApp>
@@ -110,38 +151,38 @@ function App() {
           <button type="button">Самый быстрый</button>
         </div>
         <section>
-          <article>
-            <div>13 400 Р</div>
+          <Card>
+            <Price>13 400 Р</Price>
             <img src="http://picsum.photos/130/25" alt="" />
-            <dl>
+            <InfoList>
               <div>
-                <dt>MOW - HKT</dt>
-                <dd>10:45 - 08:00</dd>
+                <InfoTitle>MOW - HKT</InfoTitle>
+                <InfoDescription>10:45 - 08:00</InfoDescription>
               </div>
               <div>
-                <dt>В пути</dt>
-                <dd>21ч 15м</dd>
+                <InfoTitle>В пути</InfoTitle>
+                <InfoDescription>21ч 15м</InfoDescription>
               </div>
               <div>
-                <dt>2 пересадки</dt>
-                <dd>HKG, JNB</dd>
+                <InfoTitle>2 пересадки</InfoTitle>
+                <InfoDescription>HKG, JNB</InfoDescription>
               </div>
-            </dl>
-            <dl>
+            </InfoList>
+            <InfoList>
               <div>
-                <dt>MOW - HKT</dt>
-                <dd>11:20 - 00:50</dd>
-              </div>
-              <div>
-                <dt>В пути</dt>
-                <dd>13ч 30м</dd>
+                <InfoTitle>MOW - HKT</InfoTitle>
+                <InfoDescription>11:20 - 00:50</InfoDescription>
               </div>
               <div>
-                <dt>1 пересадка</dt>
-                <dd>HKG</dd>
+                <InfoTitle>В пути</InfoTitle>
+                <InfoDescription>13ч 30м</InfoDescription>
               </div>
-            </dl>
-          </article>
+              <div>
+                <InfoTitle>1 пересадка</InfoTitle>
+                <InfoDescription>HKG</InfoDescription>
+              </div>
+            </InfoList>
+          </Card>
         </section>
       </Main>
       <Aside>
