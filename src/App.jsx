@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import logo from './logo.png';
 import 'fontsource-open-sans/400-normal.css';
@@ -139,17 +139,44 @@ const InfoDescription = styled.dd`
   font-size: 14px;
 `;
 
-function App() {
+const ButtonGroup = styled.div`
+  display: flex;
+  margin-bottom: 20px;
+  overflow: hidden;
+  border: 1px solid #dfe5ec;
+  border-radius: 5px;
+`;
+
+const Button = styled.button`
+  width: 50%;
+  height: 50px;
+  padding: 0;
+  color: ${(props) => (props.active ? '#fff' : '#4a4a4a')};
+  font-size: 12px;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  background: ${(props) => (props.active ? '#2196f3' : '#fff')};
+  border: 0;
+  cursor: pointer;
+`;
+
+const App = () => {
+  const [active, setActive] = useState(0);
+
+  const handleClick = (index) => () => {
+    setActive(index);
+  };
+
   return (
     <StyledApp>
       <Header>
-        <img src={logo} className="logo" alt="logo" />
+        <img src={logo} alt="logo" />
       </Header>
       <Main>
-        <div>
-          <button type="button">Самый дешевый</button>
-          <button type="button">Самый быстрый</button>
-        </div>
+        <ButtonGroup>
+          <Button active={active === 0} onClick={handleClick(0)}>Самый дешевый</Button>
+          <Button active={active === 1} onClick={handleClick(1)}>Самый быстрый</Button>
+        </ButtonGroup>
         <section>
           <Card>
             <Price>13 400 Р</Price>
@@ -227,6 +254,6 @@ function App() {
       </Aside>
     </StyledApp>
   );
-}
+};
 
 export default App;
