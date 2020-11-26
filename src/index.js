@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import 'fontsource-open-sans/400-normal.css';
+import 'fontsource-open-sans/600-normal.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 

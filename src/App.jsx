@@ -1,12 +1,10 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
-import uuid from 'react-uuid';
 import styled from 'styled-components';
 import axios from 'axios';
 import logo from './logo.png';
-import 'fontsource-open-sans/400-normal.css';
-import 'fontsource-open-sans/600-normal.css';
+import Tickets from './components/Tickets';
 
 const StyledApp = styled.div`
   display: grid;
@@ -105,49 +103,6 @@ const SidebarLabel = styled.label`
   }
 `;
 
-const Cards = styled.section`
-  display: grid;
-  row-gap: 20px;
-`;
-
-const Card = styled.article`
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px;
-  background: #fff;
-  border-radius: 5px;
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, .1);
-`;
-
-const Price = styled.div`
-  color: #2196f3;
-  font-weight: 600;
-  font-size: 24px;
-`;
-
-const InfoList = styled.dl`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  width: 100%;
-  font-weight: 600;
-  column-gap: 20px;
-`;
-
-const InfoTitle = styled.dt`
-  color: #a0b0b9;
-  font-size: 12px;
-  letter-spacing: .5px;
-  text-transform: uppercase;
-`;
-
-const InfoDescription = styled.dd`
-  margin: 0;
-  color: #4a4a4a;
-  font-size: 14px;
-`;
-
 const ButtonGroup = styled.div`
   display: flex;
   margin-bottom: 20px;
@@ -168,64 +123,6 @@ const Button = styled.button`
   border: 0;
   cursor: pointer;
 `;
-
-const Tickets = (props) => {
-  const { searchId, params } = props;
-  const [tickets, setTickets] = useState([]);
-
-  useState(() => {
-    const fetchTickets = async () => {
-      const response = await axios.get(`https://front-test.beta.aviasales.ru/tickets?searchId=${searchId}`);
-      setTickets(response.data.tickets);
-    };
-    fetchTickets();
-  });
-
-  return (
-    <Cards>
-      {tickets.filter((ticket) => {
-        if (!params || params.stopsCount.length === 0) {
-          return true;
-        }
-        const ticketStopsCount = ticket.segments.map((segment) => segment.stops.length);
-        const intersection = params.stopsCount.filter(
-          (stopCount) => ticketStopsCount.includes(stopCount),
-        );
-        return intersection > 0;
-      }).map((ticket, index) => (
-        <Card key={index}>
-          <Price>
-            {ticket.price}
-            Р
-          </Price>
-          <img src={`http://pics.avs.io/99/36/${ticket.carrier}.png`} alt="" />
-          {ticket.segments.map((segment) => (
-            <InfoList key={uuid()}>
-              <div>
-                <InfoTitle>{[segment.origin, segment.destination].join(' - ')}</InfoTitle>
-                {/* TODO: нормализовать. Из timestamp в человеко-читабельную дату */}
-                <InfoDescription>{segment.date}</InfoDescription>
-              </div>
-              <div>
-                <InfoTitle>В пути</InfoTitle>
-                {/* TODO: нормализовать. Например: 90 -> 1ч 30м */}
-                <InfoDescription>{segment.duration}</InfoDescription>
-              </div>
-              <div>
-                {/* TODO: Не выводить если нет пересадок; Проверить нужна ли плюрализация */}
-                <InfoTitle>
-                  {segment.stops.length}
-                  пересадки
-                </InfoTitle>
-                <InfoDescription>{segment.stops.join(', ')}</InfoDescription>
-              </div>
-            </InfoList>
-          ))}
-        </Card>
-      ))}
-    </Cards>
-  );
-};
 
 const App = () => {
   const [active, setActive] = useState(0);
