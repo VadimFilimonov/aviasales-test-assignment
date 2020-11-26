@@ -1,5 +1,8 @@
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 import logo from './logo.png';
 import 'fontsource-open-sans/400-normal.css';
 import 'fontsource-open-sans/600-normal.css';
@@ -101,6 +104,11 @@ const SidebarLabel = styled.label`
   }
 `;
 
+const Cards = styled.section`
+  display: grid;
+  row-gap: 20px;
+`;
+
 const Card = styled.article`
   display: flex;
   flex-wrap: wrap;
@@ -160,12 +168,67 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
+const Tickets = (props) => {
+  const [tickets, setTickets] = useState([]);
+
+  useState(async () => {
+    const response = await axios.get(`https://front-test.beta.aviasales.ru/tickets?searchId=${props.searchId}`);
+    setTickets(response.data.tickets);
+  });
+
+  return (
+    <Cards>
+      {tickets.map((ticket, index) => (
+        <Card key={index}>
+          <Price>
+            {ticket.price}
+            Р
+          </Price>
+          <img src={`http://pics.avs.io/99/36/${ticket.carrier}.png`} alt="" />
+          {ticket.segments.map((segment) => (
+            <InfoList>
+              <div>
+                <InfoTitle>{[segment.origin, segment.destination].join(' - ')}</InfoTitle>
+                {/* TODO: нормализовать. Из timestamp в человеко-читабельную дату */}
+                <InfoDescription>{segment.date}</InfoDescription>
+              </div>
+              <div>
+                <InfoTitle>В пути</InfoTitle>
+                {/* TODO: нормализовать. Например: 90 -> 1ч 30м */}
+                <InfoDescription>{segment.duration}</InfoDescription>
+              </div>
+              <div>
+                {/* TODO: Не выводить если нет пересадок; Проверить нужна ли плюрализация */}
+                <InfoTitle>
+                  {segment.stops.length}
+                  пересадки
+                </InfoTitle>
+                <InfoDescription>{segment.stops.join(', ')}</InfoDescription>
+              </div>
+            </InfoList>
+          ))}
+        </Card>
+      ))}
+    </Cards>
+  );
+};
+
 const App = () => {
   const [active, setActive] = useState(0);
+  const [searchId, setSearchId] = useState();
+
+  useState(async () => {
+    const response = await axios.get('https://front-test.beta.aviasales.ru/search');
+    setSearchId(response.data.searchId);
+  });
 
   const handleClick = (index) => () => {
     setActive(index);
   };
+
+  if (!searchId) {
+    return null;
+  }
 
   return (
     <StyledApp>
@@ -177,40 +240,7 @@ const App = () => {
           <Button active={active === 0} onClick={handleClick(0)}>Самый дешевый</Button>
           <Button active={active === 1} onClick={handleClick(1)}>Самый быстрый</Button>
         </ButtonGroup>
-        <section>
-          <Card>
-            <Price>13 400 Р</Price>
-            <img src="http://picsum.photos/130/25" alt="" />
-            <InfoList>
-              <div>
-                <InfoTitle>MOW - HKT</InfoTitle>
-                <InfoDescription>10:45 - 08:00</InfoDescription>
-              </div>
-              <div>
-                <InfoTitle>В пути</InfoTitle>
-                <InfoDescription>21ч 15м</InfoDescription>
-              </div>
-              <div>
-                <InfoTitle>2 пересадки</InfoTitle>
-                <InfoDescription>HKG, JNB</InfoDescription>
-              </div>
-            </InfoList>
-            <InfoList>
-              <div>
-                <InfoTitle>MOW - HKT</InfoTitle>
-                <InfoDescription>11:20 - 00:50</InfoDescription>
-              </div>
-              <div>
-                <InfoTitle>В пути</InfoTitle>
-                <InfoDescription>13ч 30м</InfoDescription>
-              </div>
-              <div>
-                <InfoTitle>1 пересадка</InfoTitle>
-                <InfoDescription>HKG</InfoDescription>
-              </div>
-            </InfoList>
-          </Card>
-        </section>
+        <Tickets searchId={searchId} />
       </Main>
       <Aside>
         <Sidebar>
