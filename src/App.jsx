@@ -1,6 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
+import uuid from 'react-uuid';
 import styled from 'styled-components';
 import axios from 'axios';
 import logo from './logo.png';
@@ -189,7 +190,7 @@ const Tickets = (props) => {
           </Price>
           <img src={`http://pics.avs.io/99/36/${ticket.carrier}.png`} alt="" />
           {ticket.segments.map((segment) => (
-            <InfoList>
+            <InfoList key={uuid()}>
               <div>
                 <InfoTitle>{[segment.origin, segment.destination].join(' - ')}</InfoTitle>
                 {/* TODO: нормализовать. Из timestamp в человеко-читабельную дату */}
