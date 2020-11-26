@@ -172,8 +172,11 @@ const Tickets = (props) => {
   const [tickets, setTickets] = useState([]);
 
   useState(async () => {
-    const response = await axios.get(`https://front-test.beta.aviasales.ru/tickets?searchId=${props.searchId}`);
-    setTickets(response.data.tickets);
+    const fetchTickets = async () => {
+      const response = await axios.get(`https://front-test.beta.aviasales.ru/tickets?searchId=${props.searchId}`);
+      setTickets(response.data.tickets);
+    };
+    fetchTickets();
   });
 
   return (
@@ -218,9 +221,12 @@ const App = () => {
   const [searchId, setSearchId] = useState();
 
   useState(async () => {
-    const response = await axios.get('https://front-test.beta.aviasales.ru/search');
-    setSearchId(response.data.searchId);
-  });
+    const fetchSearchId = async () => {
+      const response = await axios.get('https://front-test.beta.aviasales.ru/search');
+      setSearchId(response.data.searchId);
+    };
+    fetchSearchId();
+  }, []);
 
   const handleClick = (index) => () => {
     setActive(index);
