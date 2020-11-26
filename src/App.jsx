@@ -170,11 +170,12 @@ const Button = styled.button`
 `;
 
 const Tickets = (props) => {
+  const { searchId, params } = props;
   const [tickets, setTickets] = useState([]);
 
-  useState(async () => {
+  useState(() => {
     const fetchTickets = async () => {
-      const response = await axios.get(`https://front-test.beta.aviasales.ru/tickets?searchId=${props.searchId}`);
+      const response = await axios.get(`https://front-test.beta.aviasales.ru/tickets?searchId=${searchId}`);
       setTickets(response.data.tickets);
     };
     fetchTickets();
@@ -182,7 +183,16 @@ const Tickets = (props) => {
 
   return (
     <Cards>
-      {tickets.map((ticket, index) => (
+      {tickets.filter((ticket) => {
+        if (!params || params.stopsCount.length === 0) {
+          return true;
+        }
+        const ticketStopsCount = ticket.segments.map((segment) => segment.stops.length);
+        const intersection = params.stopsCount.filter(
+          (stopCount) => ticketStopsCount.includes(stopCount),
+        );
+        return intersection > 0;
+      }).map((ticket, index) => (
         <Card key={index}>
           <Price>
             {ticket.price}
@@ -221,7 +231,7 @@ const App = () => {
   const [active, setActive] = useState(0);
   const [searchId, setSearchId] = useState();
 
-  useState(async () => {
+  useState(() => {
     const fetchSearchId = async () => {
       const response = await axios.get('https://front-test.beta.aviasales.ru/search');
       setSearchId(response.data.searchId);
