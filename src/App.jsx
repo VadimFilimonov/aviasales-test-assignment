@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import logo from './logo.png';
 import Sidebar from './components/Sidebar';
+import Sort from './components/Sort';
 import Tickets from './components/Tickets';
 
 const StyledApp = styled.div`
@@ -36,29 +37,7 @@ const Aside = styled.aside`
   grid-area: aside;
 `;
 
-const ButtonGroup = styled.div`
-  display: flex;
-  margin-bottom: 20px;
-  overflow: hidden;
-  border: 1px solid #dfe5ec;
-  border-radius: 5px;
-`;
-
-const Button = styled.button`
-  width: 50%;
-  height: 50px;
-  padding: 0;
-  color: ${(props) => (props.active ? '#fff' : '#4a4a4a')};
-  font-size: 12px;
-  letter-spacing: .5px;
-  text-transform: uppercase;
-  background: ${(props) => (props.active ? '#2196f3' : '#fff')};
-  border: 0;
-  cursor: pointer;
-`;
-
 const App = () => {
-  const [active, setActive] = useState(0);
   const [searchId, setSearchId] = useState();
 
   useState(() => {
@@ -68,10 +47,6 @@ const App = () => {
     };
     fetchSearchId();
   }, []);
-
-  const handleClick = (index) => () => {
-    setActive(index);
-  };
 
   if (!searchId) {
     return null;
@@ -83,10 +58,7 @@ const App = () => {
         <img src={logo} alt="logo" />
       </Header>
       <Main>
-        <ButtonGroup>
-          <Button active={active === 0} onClick={handleClick(0)}>Самый дешевый</Button>
-          <Button active={active === 1} onClick={handleClick(1)}>Самый быстрый</Button>
-        </ButtonGroup>
+        <Sort />
         <Tickets searchId={searchId} />
       </Main>
       <Aside>
