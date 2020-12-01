@@ -4,6 +4,10 @@ import uuid from 'react-uuid';
 import styled from 'styled-components';
 import { convertToTime, convertToDuration } from '../../utilities/date';
 
+const formatPrice = (price) => (
+  new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB' }).format(price).replace(',00', '')
+);
+
 const Wrapper = styled.article`
   display: flex;
   flex-wrap: wrap;
@@ -44,10 +48,7 @@ const InfoDescription = styled.dd`
 
 const Ticket = ({ ticket }) => (
   <Wrapper>
-    <Price>
-      {/* Добавить разделитель тысяч */}
-      {[ticket.price, 'Р'].join(' ')}
-    </Price>
+    <Price>{formatPrice(ticket.price)}</Price>
     <img src={`http://pics.avs.io/99/36/${ticket.carrier}.png`} alt="" />
     {ticket.segments.map((segment) => (
       <InfoList key={uuid()}>
