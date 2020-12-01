@@ -57,17 +57,18 @@ const Ticket = ({ ticket }) => (
         </div>
         <div>
           <InfoTitle>В пути</InfoTitle>
-          {/* TODO: нормализовать. Например: 90 -> 1ч 30м */}
           <InfoDescription>{convertToDuration(segment.duration)}</InfoDescription>
         </div>
-        <div>
-          {/* TODO: Не выводить если нет пересадок; Проверить нужна ли плюрализация */}
-          <InfoTitle>
-            {segment.stops.length}
-            пересадки
-          </InfoTitle>
-          <InfoDescription>{segment.stops.join(', ')}</InfoDescription>
-        </div>
+        {segment.stops.length > 0
+          && (
+          <div>
+            <InfoTitle>
+              {/* TODO: Добавить плюрализацию */}
+              {[segment.stops.length, 'пересадки'].join(' ')}
+            </InfoTitle>
+            <InfoDescription>{segment.stops.join(', ')}</InfoDescription>
+          </div>
+          )}
       </InfoList>
     ))}
   </Wrapper>
