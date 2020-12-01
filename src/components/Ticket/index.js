@@ -2,6 +2,7 @@
 import React from 'react';
 import uuid from 'react-uuid';
 import styled from 'styled-components';
+import { convertToTime } from '../../utilities/date';
 
 const Wrapper = styled.article`
   display: flex;
@@ -52,8 +53,7 @@ const Ticket = ({ ticket }) => (
       <InfoList key={uuid()}>
         <div>
           <InfoTitle>{[segment.origin, segment.destination].join(' - ')}</InfoTitle>
-          {/* TODO: нормализовать. Из timestamp в человеко-читабельную дату */}
-          <InfoDescription>{segment.date}</InfoDescription>
+          <InfoDescription>{convertToTime(segment.date)}</InfoDescription>
         </div>
         <div>
           <InfoTitle>В пути</InfoTitle>
