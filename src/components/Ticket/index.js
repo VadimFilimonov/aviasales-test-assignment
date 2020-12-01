@@ -45,8 +45,8 @@ const InfoDescription = styled.dd`
 const Ticket = ({ ticket }) => (
   <Wrapper>
     <Price>
-      {ticket.price}
-      Р
+      {/* Добавить разделитель тысяч */}
+      {[ticket.price, 'Р'].join(' ')}
     </Price>
     <img src={`http://pics.avs.io/99/36/${ticket.carrier}.png`} alt="" />
     {ticket.segments.map((segment) => (
