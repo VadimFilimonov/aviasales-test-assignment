@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import logo from './logo.png';
@@ -40,7 +40,7 @@ const Aside = styled.aside`
 const App = () => {
   const [searchId, setSearchId] = useState();
 
-  useState(() => {
+  useEffect(() => {
     const fetchSearchId = async () => {
       const response = await axios.get('https://front-test.beta.aviasales.ru/search');
       setSearchId(response.data.searchId);

@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import uuid from 'react-uuid';
 import styled from 'styled-components';
 import axios from 'axios';
@@ -14,13 +14,13 @@ const Tickets = (props) => {
   const { searchId, params } = props;
   const [tickets, setTickets] = useState([]);
 
-  useState(() => {
+  useEffect(() => {
     const fetchTickets = async () => {
       const response = await axios.get(`https://front-test.beta.aviasales.ru/tickets?searchId=${searchId}`);
       setTickets(response.data.tickets);
     };
     fetchTickets();
-  });
+  }, []);
 
   return (
     <Wrapper>
