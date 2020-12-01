@@ -2,7 +2,7 @@
 import React from 'react';
 import uuid from 'react-uuid';
 import styled from 'styled-components';
-import { convertToTime } from '../../utilities/date';
+import { convertToTime, convertToDuration } from '../../utilities/date';
 
 const Wrapper = styled.article`
   display: flex;
@@ -58,7 +58,7 @@ const Ticket = ({ ticket }) => (
         <div>
           <InfoTitle>В пути</InfoTitle>
           {/* TODO: нормализовать. Например: 90 -> 1ч 30м */}
-          <InfoDescription>{segment.duration}</InfoDescription>
+          <InfoDescription>{convertToDuration(segment.duration)}</InfoDescription>
         </div>
         <div>
           {/* TODO: Не выводить если нет пересадок; Проверить нужна ли плюрализация */}
