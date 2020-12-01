@@ -25,6 +25,11 @@ const Price = styled.div`
   font-size: 24px;
 `;
 
+const Logo = styled.img`
+  max-width: 110px;
+  margin-right: 30px;
+`;
+
 const InfoList = styled.dl`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -49,7 +54,7 @@ const InfoDescription = styled.dd`
 const Ticket = ({ ticket }) => (
   <Wrapper>
     <Price>{formatPrice(ticket.price)}</Price>
-    <img src={`http://pics.avs.io/99/36/${ticket.carrier}.png`} alt="" />
+    <Logo src={`http://pics.avs.io/99/36/${ticket.carrier}.png`} alt="" />
     {ticket.segments.map((segment) => (
       <InfoList key={uuid()}>
         <div>
