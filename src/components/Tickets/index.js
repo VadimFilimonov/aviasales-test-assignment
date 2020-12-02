@@ -39,22 +39,47 @@ const Tickets = (props) => {
 
   useEffect(() => {
     setDisplayedTickets(() => (
-      tickets.filter((ticket) => {
-        if (!params || params.stopsCount.length === 0) {
-          return true;
-        }
-        const ticketStopsCount = ticket.segments.map((segment) => segment.stops.length);
-        const intersection = params.stopsCount.filter(
-          (stopCount) => ticketStopsCount.includes(stopCount),
-        );
-        return intersection > 0;
-      })
+      tickets
+        .filter((ticket) => {
+          if (!params || params.stopsCount.length === 0) {
+            return true;
+          }
+          const ticketStopsCount = ticket.segments.map((segment) => segment.stops.length);
+          const intersection = params.stopsCount.filter(
+            (stopCount) => ticketStopsCount.includes(stopCount),
+          );
+          return intersection > 0;
+        })
+        .sort((a, b) => {
+          if (params.sort === 'cheapest') {
+            if (a.price < b.price) {
+              return -1;
+            }
+            if (a.price > b.price) {
+              return 1;
+            }
+            return 0;
+          }
+          const aDuration = a.segments.reduce((acc, { duration }) => acc + duration, 0);
+          const bDuration = b.segments.reduce((acc, { duration }) => acc + duration, 0);
+          if (aDuration < bDuration) {
+            return -1;
+          }
+          if (aDuration > bDuration) {
+            return 1;
+          }
+          return 0;
+        })
         .slice(0, COUNT_TICKETS_TO_SHOW)
     ));
   }, [params, finished]);
 
   if (!finished) {
-    return null;
+    return (
+      <Wrapper>
+        Подождите...
+      </Wrapper>
+    );
   }
 
   return (
