@@ -15,12 +15,20 @@ const StyledApp = styled.div`
   grid-template-columns: 230px 1fr;
   align-content: start;
   box-sizing: border-box;
-  max-width: 755px;
+  max-width: 775px;
   min-height: 100vh;
   margin: 0 auto;
-  padding: 50px 0 120px;
+  padding: 50px 20px 120px;
   column-gap: 20px;
   row-gap: 60px;
+
+  @media screen and (max-width: 700px) {
+    grid-template-areas: "header"
+      "aside"
+      "main";
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+  }
 `;
 
 const Header = styled.header`

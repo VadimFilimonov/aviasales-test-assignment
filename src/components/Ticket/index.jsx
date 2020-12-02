@@ -28,6 +28,10 @@ const Price = styled.div`
 const Logo = styled.img`
   max-width: 110px;
   margin-right: 30px;
+
+  @media screen and (max-width: 700px) {
+    margin-right: 0;
+  }
 `;
 
 const InfoList = styled.dl`
@@ -36,6 +40,10 @@ const InfoList = styled.dl`
   width: 100%;
   font-weight: 600;
   column-gap: 20px;
+
+  @media screen and (max-width: 700px) {
+    column-gap: 5px;
+  }
 `;
 
 const InfoTitle = styled.dt`
@@ -43,12 +51,20 @@ const InfoTitle = styled.dt`
   font-size: 12px;
   letter-spacing: .5px;
   text-transform: uppercase;
+
+  @media screen and (max-width: 700px) {
+    font-size: 10px;
+  }
 `;
 
 const InfoDescription = styled.dd`
   margin: 0;
   color: #4a4a4a;
   font-size: 14px;
+
+  @media screen and (max-width: 700px) {
+    font-size: 12px;
+  }
 `;
 
 const Ticket = ({ ticket }) => (
@@ -65,6 +81,7 @@ const Ticket = ({ ticket }) => (
           <InfoTitle>В пути</InfoTitle>
           <InfoDescription>{convertToDuration(segment.duration)}</InfoDescription>
         </div>
+        {/* TODO: при отсутствии пересадок в description написать "Прямой" */}
         {segment.stops.length > 0
           && (
           <div>
