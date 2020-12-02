@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Ticket 1 1`] = `
+<DocumentFragment>
+  <article
+    class="sc-bdfBwQ iqAcWp"
+  >
+    <div
+      class="sc-gsTCUz hdYghD"
+    >
+      44 327 ₽
+    </div>
+    <img
+      alt=""
+      class="sc-dlfnbm jjvIZi"
+      src="http://pics.avs.io/99/36/EY.png"
+    />
+    <dl
+      class="sc-hKgILt djIyHG"
+    >
+      <div>
+        <dt
+          class="sc-eCssSg djFfwt"
+        >
+          MOW - HKT
+        </dt>
+        <dd
+          class="sc-jSgupP cMTqah"
+        >
+          14:24
+        </dd>
+      </div>
+      <div>
+        <dt
+          class="sc-eCssSg djFfwt"
+        >
+          В пути
+        </dt>
+        <dd
+          class="sc-jSgupP cMTqah"
+        >
+          19ч 31м
+        </dd>
+      </div>
+      <div>
+        <dt
+          class="sc-eCssSg djFfwt"
+        >
+          3 пересадки
+        </dt>
+        <dd
+          class="sc-jSgupP cMTqah"
+        >
+          SHA, BKK, DXB
+        </dd>
+      </div>
+    </dl>
+    <dl
+      class="sc-hKgILt djIyHG"
+    >
+      <div>
+        <dt
+          class="sc-eCssSg djFfwt"
+        >
+          HKT - MOW
+        </dt>
+        <dd
+          class="sc-jSgupP cMTqah"
+        >
+          09:06
+        </dd>
+      </div>
+      <div>
+        <dt
+          class="sc-eCssSg djFfwt"
+        >
+          В пути
+        </dt>
+        <dd
+          class="sc-jSgupP cMTqah"
+        >
+          11ч 42м
+        </dd>
+      </div>
+    </dl>
+  </article>
+</DocumentFragment>
+`;
