@@ -45,6 +45,7 @@ const Tickets = (props) => {
           const paramsStopsCount = Object.entries(params.stopsCount)
             .filter(([key, value]) => key !== 'all' && value)
             .map(([key]) => Number(key));
+          // TODO: add abstract for intersection
           const intersection = paramsStopsCount.filter(
             (stopCount) => ticketStopsCount.includes(stopCount),
           );
@@ -75,6 +76,7 @@ const Tickets = (props) => {
   }, [params, finished]);
 
   if (!finished) {
+    // TODO: change to preloader
     return (
       <Wrapper>
         Подождите...
@@ -84,6 +86,7 @@ const Tickets = (props) => {
 
   return (
     <Wrapper>
+      {/* TODO: add message for empty result */}
       {displayedTickets.map((ticket) => <Ticket ticket={ticket} key={uuid()} />)}
     </Wrapper>
   );

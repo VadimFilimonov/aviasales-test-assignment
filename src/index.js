@@ -6,6 +6,7 @@ import 'fontsource-open-sans/600-normal.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// TODO: change favicon
 ReactDOM.render(
   <React.StrictMode>
     <App />

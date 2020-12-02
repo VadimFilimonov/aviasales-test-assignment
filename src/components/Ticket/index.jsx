@@ -69,7 +69,7 @@ const Ticket = ({ ticket }) => (
           && (
           <div>
             <InfoTitle>
-              {/* TODO: Добавить плюрализацию */}
+              {/* TODO: add plural */}
               {[segment.stops.length, 'пересадки'].join(' ')}
             </InfoTitle>
             <InfoDescription>{segment.stops.join(', ')}</InfoDescription>

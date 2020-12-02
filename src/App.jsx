@@ -7,6 +7,7 @@ import Filter from './components/Filter';
 import Sort from './components/Sort';
 import Tickets from './components/Tickets';
 
+// TODO: transfer styles to separeted files
 const StyledApp = styled.div`
   display: grid;
   grid-template-areas: "header header"
