@@ -48,7 +48,7 @@ const Tickets = (props) => {
           const intersection = paramsStopsCount.filter(
             (stopCount) => ticketStopsCount.includes(stopCount),
           );
-          return paramsStopsCount > 0 ? intersection > 0 : true;
+          return intersection > 0;
         })
         .sort((a, b) => {
           if (params.sort === 'cheapest') {
