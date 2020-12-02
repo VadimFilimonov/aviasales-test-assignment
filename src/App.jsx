@@ -40,7 +40,13 @@ const Aside = styled.aside`
 const App = () => {
   const [searchId, setSearchId] = useState();
   const [params, setParams] = useState({
-    stopsCount: [],
+    stopsCount: {
+      all: true,
+      0: true,
+      1: true,
+      2: true,
+      3: true,
+    },
     sort: 'cheapest',
   });
 
@@ -54,6 +60,15 @@ const App = () => {
 
   const handleSortChange = ({ target }) => {
     setParams((prevParams) => ({ ...prevParams, sort: target.value }));
+  };
+
+  const handleFilterChange = ({ target }) => {
+    const { name, checked } = target;
+    setParams((prevParams) => {
+      const { stopsCount } = prevParams;
+      const updatedStopsCount = { ...stopsCount, [name]: checked };
+      return { ...prevParams, stopsCount: updatedStopsCount };
+    });
   };
 
   if (!searchId) {
@@ -70,7 +85,7 @@ const App = () => {
         <Tickets params={params} searchId={searchId} />
       </Main>
       <Aside>
-        <Filter />
+        <Filter handleChange={handleFilterChange} stopsCount={params.stopsCount} />
       </Aside>
     </StyledApp>
   );

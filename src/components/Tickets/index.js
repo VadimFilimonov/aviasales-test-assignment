@@ -41,14 +41,14 @@ const Tickets = (props) => {
     setDisplayedTickets(() => (
       tickets
         .filter((ticket) => {
-          if (!params || params.stopsCount.length === 0) {
-            return true;
-          }
           const ticketStopsCount = ticket.segments.map((segment) => segment.stops.length);
-          const intersection = params.stopsCount.filter(
+          const paramsStopsCount = Object.entries(params.stopsCount)
+            .filter(([key, value]) => key !== 'all' && value)
+            .map(([key]) => Number(key));
+          const intersection = paramsStopsCount.filter(
             (stopCount) => ticketStopsCount.includes(stopCount),
           );
-          return intersection > 0;
+          return paramsStopsCount > 0 ? intersection > 0 : true;
         })
         .sort((a, b) => {
           if (params.sort === 'cheapest') {

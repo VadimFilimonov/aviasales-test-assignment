@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import styled from 'styled-components';
 
@@ -69,44 +70,49 @@ const Label = styled.label`
   }
 `;
 
-const Filter = () => (
+const Filter = ({ stopsCount, handleChange }) => (
   <Wrapper>
     <Title>Количество пересадок</Title>
     <Checkbox
       id="all"
-      value="all"
+      name="all"
       type="checkbox"
-      name="transfers"
+      checked={stopsCount.all}
+      onChange={handleChange}
     />
     <Label htmlFor="all">Все</Label>
     <Checkbox
-      id="transfer0"
-      value="0"
+      id="zero"
+      name="0"
       type="checkbox"
-      name="transfers"
+      checked={stopsCount['0']}
+      onChange={handleChange}
     />
-    <Label htmlFor="transfer0">Без пересадок</Label>
+    <Label htmlFor="zero">Без пересадок</Label>
     <Checkbox
-      id="transfer1"
-      value="1"
+      id="one"
+      name="1"
       type="checkbox"
-      name="transfers"
+      checked={stopsCount['1']}
+      onChange={handleChange}
     />
-    <Label htmlFor="transfer1">1 пересадка</Label>
+    <Label htmlFor="one">1 пересадка</Label>
     <Checkbox
-      id="transfer2"
-      value="2"
+      id="two"
+      name="2"
       type="checkbox"
-      name="transfers"
+      checked={stopsCount['2']}
+      onChange={handleChange}
     />
-    <Label htmlFor="transfer2">2 пересадки</Label>
+    <Label htmlFor="two">2 пересадки</Label>
     <Checkbox
-      id="transfer3"
-      value="3"
+      id="three"
+      name="3"
       type="checkbox"
-      name="transfers"
+      checked={stopsCount['3']}
+      onChange={handleChange}
     />
-    <Label htmlFor="transfer3">3 пересадки</Label>
+    <Label htmlFor="three">3 пересадки</Label>
   </Wrapper>
 );
 
