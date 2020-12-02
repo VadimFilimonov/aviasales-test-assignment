@@ -19,19 +19,18 @@ const Tickets = (props) => {
 
   useEffect(() => {
     const fetchTickets = async () => {
-      const response = await axios.get(`https://front-test.beta.aviasales.ru/tickets?searchId=${searchId}`)
-        .catch((e) => {
-          if (e.response) {
-            // eslint-disable-next-line no-console
-            console.error(e.response.status);
-          }
-        });
-      const newTickets = response ? response.data.tickets : [];
-      setTickets((t) => [...t, ...newTickets]);
-      if (response?.data.stop) {
-        setFinished(true);
-      } else {
-        fetchTickets();
+      try {
+        const response = await axios.get(`https://front-test.beta.aviasales.ru/tickets?searchId=${searchId}`);
+        setTickets((prevTickets) => [...prevTickets, ...response.data.tickets]);
+        if (response?.data.stop) {
+          setFinished(true);
+        } else {
+          fetchTickets();
+        }
+      } catch (e) {
+        if (e.response.status === 500) {
+          fetchTickets();
+        }
       }
     };
     fetchTickets();
