@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key */
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
@@ -40,6 +39,7 @@ const Aside = styled.aside`
 const App = () => {
   const [searchId, setSearchId] = useState();
   const [params, setParams] = useState({
+    sort: 'cheapest',
     stopsCount: {
       all: true,
       0: true,
@@ -47,7 +47,6 @@ const App = () => {
       2: true,
       3: true,
     },
-    sort: 'cheapest',
   });
 
   useEffect(() => {
@@ -66,8 +65,23 @@ const App = () => {
     const { name, checked } = target;
     setParams((prevParams) => {
       const { stopsCount } = prevParams;
+      if (name === 'all') {
+        return {
+          ...prevParams,
+          stopsCount: {
+            all: checked,
+            0: checked,
+            1: checked,
+            2: checked,
+            3: checked,
+          },
+        };
+      }
       const updatedStopsCount = { ...stopsCount, [name]: checked };
-      return { ...prevParams, stopsCount: updatedStopsCount };
+      const all = Object.entries(updatedStopsCount)
+        .filter(([key]) => key !== 'all')
+        .every(([, value]) => value);
+      return { ...prevParams, stopsCount: { ...updatedStopsCount, all } };
     });
   };
 
