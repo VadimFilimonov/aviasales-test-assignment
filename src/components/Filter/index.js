@@ -69,7 +69,7 @@ const Label = styled.label`
   }
 `;
 
-const Sidebar = () => (
+const Filter = () => (
   <Wrapper>
     <Title>Количество пересадок</Title>
     <Checkbox
@@ -81,28 +81,28 @@ const Sidebar = () => (
     <Label htmlFor="all">Все</Label>
     <Checkbox
       id="transfer0"
-      value="transfer0"
+      value="0"
       type="checkbox"
       name="transfers"
     />
     <Label htmlFor="transfer0">Без пересадок</Label>
     <Checkbox
       id="transfer1"
-      value="transfer1"
+      value="1"
       type="checkbox"
       name="transfers"
     />
     <Label htmlFor="transfer1">1 пересадка</Label>
     <Checkbox
       id="transfer2"
-      value="transfer2"
+      value="2"
       type="checkbox"
       name="transfers"
     />
     <Label htmlFor="transfer2">2 пересадки</Label>
     <Checkbox
       id="transfer3"
-      value="transfer3"
+      value="3"
       type="checkbox"
       name="transfers"
     />
@@ -110,4 +110,4 @@ const Sidebar = () => (
   </Wrapper>
 );
 
-export default Sidebar;
+export default Filter;

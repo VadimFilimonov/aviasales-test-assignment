@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import logo from './logo.png';
-import Sidebar from './components/Sidebar';
+import Filter from './components/Filter';
 import Sort from './components/Sort';
 import Tickets from './components/Tickets';
 
@@ -70,7 +70,7 @@ const App = () => {
         <Tickets params={params} searchId={searchId} />
       </Main>
       <Aside>
-        <Sidebar />
+        <Filter />
       </Aside>
     </StyledApp>
   );
