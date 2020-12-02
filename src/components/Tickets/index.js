@@ -15,6 +15,7 @@ const Wrapper = styled.section`
 const Tickets = (props) => {
   const { searchId, params } = props;
   const [tickets, setTickets] = useState([]);
+  const [displayedTickets, setDisplayedTickets] = useState([]);
   const [finished, setFinished] = useState(false);
 
   useEffect(() => {
@@ -36,13 +37,9 @@ const Tickets = (props) => {
     fetchTickets();
   }, []);
 
-  if (!finished) {
-    return null;
-  }
-
-  return (
-    <Wrapper>
-      {tickets.filter((ticket) => {
+  useEffect(() => {
+    setDisplayedTickets(() => (
+      tickets.filter((ticket) => {
         if (!params || params.stopsCount.length === 0) {
           return true;
         }
@@ -53,7 +50,16 @@ const Tickets = (props) => {
         return intersection > 0;
       })
         .slice(0, COUNT_TICKETS_TO_SHOW)
-        .map((ticket) => <Ticket ticket={ticket} key={uuid()} />)}
+    ));
+  }, [params, finished]);
+
+  if (!finished) {
+    return null;
+  }
+
+  return (
+    <Wrapper>
+      {displayedTickets.map((ticket) => <Ticket ticket={ticket} key={uuid()} />)}
     </Wrapper>
   );
 };
