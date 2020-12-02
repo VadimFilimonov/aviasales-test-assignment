@@ -39,6 +39,10 @@ const Aside = styled.aside`
 
 const App = () => {
   const [searchId, setSearchId] = useState();
+  const [params, setParams] = useState({
+    stopsCount: [],
+    sort: 'cheapest',
+  });
 
   useEffect(() => {
     const fetchSearchId = async () => {
@@ -47,6 +51,10 @@ const App = () => {
     };
     fetchSearchId();
   }, []);
+
+  const handleSortChange = ({ target }) => {
+    setParams((prevParams) => ({ ...prevParams, sort: target.value }));
+  };
 
   if (!searchId) {
     return null;
@@ -58,8 +66,8 @@ const App = () => {
         <img src={logo} alt="logo" />
       </Header>
       <Main>
-        <Sort />
-        <Tickets searchId={searchId} />
+        <Sort handleChange={handleSortChange} sort={params.sort} />
+        <Tickets params={params} searchId={searchId} />
       </Main>
       <Aside>
         <Sidebar />

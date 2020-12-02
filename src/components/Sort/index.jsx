@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+/* eslint-disable react/prop-types */
+import React from 'react';
 import styled from 'styled-components';
 
 const Fieldset = styled.fieldset`
@@ -40,21 +41,27 @@ const Label = styled.label`
   }
 `;
 
-const Sort = () => {
-  const [sort, setSort] = useState('cheapest');
-
-  const handleChange = (event) => {
-    setSort(event.target.value);
-  };
-
-  return (
-    <Fieldset>
-      <Radio id="cheapest" value="cheapest" type="radio" name="sort" onChange={handleChange} checked={sort === 'cheapest'} />
-      <Label htmlFor="cheapest">Самый дешевый</Label>
-      <Radio id="fastest" value="fastest" type="radio" name="sort" onChange={handleChange} checked={sort === 'fastest'} />
-      <Label htmlFor="fastest">Самый быстрый</Label>
-    </Fieldset>
-  );
-};
+const Sort = ({ handleChange, sort }) => (
+  <Fieldset>
+    <Radio
+      id="cheapest"
+      value="cheapest"
+      type="radio"
+      name="sort"
+      onChange={handleChange}
+      checked={sort === 'cheapest'}
+    />
+    <Label htmlFor="cheapest">Самый дешевый</Label>
+    <Radio
+      id="fastest"
+      value="fastest"
+      type="radio"
+      name="sort"
+      onChange={handleChange}
+      checked={sort === 'fastest'}
+    />
+    <Label htmlFor="fastest">Самый быстрый</Label>
+  </Fieldset>
+);
 
 export default Sort;
