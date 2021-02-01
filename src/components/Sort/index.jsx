@@ -27,17 +27,17 @@ const Label = styled.label`
   width: 50%;
   height: 50px;
   padding: 0;
-  color: #4a4a4a;
+  color: ${(props) => props.theme.color.black};
   font-size: 12px;
   letter-spacing: .5px;
   text-transform: uppercase;
-  background: #fff;
+  background: ${(props) => props.theme.color.white};
   border: 0;
   cursor: pointer;
 
   ${Radio}:checked + & {
-    color: #fff;
-    background: #2196f3;
+    color: ${(props) => props.theme.color.white};
+    background: ${(props) => props.theme.color.blue};
   }
 `;
 

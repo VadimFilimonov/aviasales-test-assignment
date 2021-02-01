@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const Wrapper = styled.section`
   padding: 20px 0;
-  background: #fff;
+  background: ${(props) => props.theme.color.white};
   border-radius: 5px;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, .1);
 `;
@@ -13,7 +13,7 @@ const Title = styled.h2`
   box-sizing: border-box;
   margin: 0 0 20px;
   padding: 0 20px;
-  color: #4a4a4a;
+  color: ${(props) => props.theme.color.black};
   font-weight: 600;
   font-size: 12px;
   line-height: 1;
@@ -34,7 +34,7 @@ const Label = styled.label`
   display: block;
   box-sizing: border-box;
   padding: 0 20px 0 50px;
-  color: #4a4a4a;
+  color: ${(props) => props.theme.color.black};
   font-size: 13px;
   line-height: 40px;
   cursor: pointer;
@@ -66,7 +66,7 @@ const Label = styled.label`
     background-repeat: no-repeat;
     background-position: center;
     background-size: 12px auto;
-    border-color: #2196f3;
+    border-color: ${(props) => props.theme.color.blue};
   }
 `;
 

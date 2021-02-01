@@ -14,13 +14,13 @@ const Wrapper = styled.article`
   align-items: center;
   justify-content: space-between;
   padding: 20px;
-  background: #fff;
+  background: ${(props) => props.theme.color.white};
   border-radius: 5px;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, .1);
 `;
 
 const Price = styled.div`
-  color: #2196f3;
+  color: ${(props) => props.theme.color.blue};
   font-weight: 600;
   font-size: 24px;
 `;
@@ -47,7 +47,7 @@ const InfoList = styled.dl`
 `;
 
 const InfoTitle = styled.dt`
-  color: #a0b0b9;
+  color: ${(props) => props.theme.color.gullGray};
   font-size: 12px;
   letter-spacing: .5px;
   text-transform: uppercase;
@@ -59,7 +59,7 @@ const InfoTitle = styled.dt`
 
 const InfoDescription = styled.dd`
   margin: 0;
-  color: #4a4a4a;
+  color: ${(props) => props.theme.color.black};
   font-size: 14px;
 
   @media screen and (max-width: 700px) {
