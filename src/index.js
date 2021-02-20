@@ -7,7 +7,6 @@ import App from './App';
 import ThemeProvider from './components/Theme/Theme';
 import reportWebVitals from './reportWebVitals';
 
-// TODO: change favicon
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider>
