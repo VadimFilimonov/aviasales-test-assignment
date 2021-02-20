@@ -70,7 +70,7 @@ const InfoDescription = styled.dd`
 const Ticket = ({ ticket }) => (
   <Wrapper>
     <Price>{formatPrice(ticket.price)}</Price>
-    <Logo src={`http://pics.avs.io/99/36/${ticket.carrier}.png`} alt="" />
+    <Logo src={`https://pics.avs.io/99/36/${ticket.carrier}.png`} alt="" />
     {ticket.segments.map((segment) => (
       <InfoList key={uuid()}>
         <div>
