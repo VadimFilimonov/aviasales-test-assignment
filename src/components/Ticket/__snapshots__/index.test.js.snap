@@ -3,81 +3,81 @@
 exports[`Ticket 1 1`] = `
 <DocumentFragment>
   <article
-    class="sc-bdfBwQ iqAcWp"
+    class="sc-bdfBwQ bkSABW"
   >
     <div
-      class="sc-gsTCUz hdYghD"
+      class="sc-gsTCUz ixeBfw"
     >
       44 327 ₽
     </div>
     <img
       alt=""
-      class="sc-dlfnbm jjvIZi"
+      class="sc-dlfnbm nrWoG"
       src="http://pics.avs.io/99/36/EY.png"
     />
     <dl
-      class="sc-hKgILt djIyHG"
+      class="sc-hKgILt fZNTGR"
     >
       <div>
         <dt
-          class="sc-eCssSg djFfwt"
+          class="sc-eCssSg fTXzRj"
         >
           MOW - HKT
         </dt>
         <dd
-          class="sc-jSgupP cMTqah"
+          class="sc-jSgupP bPqkDh"
         >
           14:24
         </dd>
       </div>
       <div>
         <dt
-          class="sc-eCssSg djFfwt"
+          class="sc-eCssSg fTXzRj"
         >
           В пути
         </dt>
         <dd
-          class="sc-jSgupP cMTqah"
+          class="sc-jSgupP bPqkDh"
         >
           19ч 31м
         </dd>
       </div>
       <div>
         <dt
-          class="sc-eCssSg djFfwt"
+          class="sc-eCssSg fTXzRj"
         >
           3 пересадки
         </dt>
         <dd
-          class="sc-jSgupP cMTqah"
+          class="sc-jSgupP bPqkDh"
         >
           SHA, BKK, DXB
         </dd>
       </div>
     </dl>
     <dl
-      class="sc-hKgILt djIyHG"
+      class="sc-hKgILt fZNTGR"
     >
       <div>
         <dt
-          class="sc-eCssSg djFfwt"
+          class="sc-eCssSg fTXzRj"
         >
           HKT - MOW
         </dt>
         <dd
-          class="sc-jSgupP cMTqah"
+          class="sc-jSgupP bPqkDh"
         >
           09:06
         </dd>
       </div>
       <div>
         <dt
-          class="sc-eCssSg djFfwt"
+          class="sc-eCssSg fTXzRj"
         >
           В пути
         </dt>
         <dd
-          class="sc-jSgupP cMTqah"
+          class="sc-jSgupP bPqkDh"
         >
           11ч 42м
         </dd>

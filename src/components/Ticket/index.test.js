@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import ThemeProvider from '../Theme/Theme';
 import Ticket from './index';
 
 test('Ticket 1', () => {
@@ -23,7 +24,10 @@ test('Ticket 1', () => {
       },
     ],
   };
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  const { asFragment } = render(<Ticket ticket={ticket} />);
+  const { asFragment } = render(
+    <ThemeProvider>
+      <Ticket ticket={ticket} />
+    </ThemeProvider>,
+  );
   expect(asFragment()).toMatchSnapshot();
 });
