@@ -1,6 +1,7 @@
 {
   "name": "aviasales-test-assignment",
   "version": "0.1.0",
+  "homepage": "https://vadimfilimonov.github.io/aviasales-test-assignment/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.5",
     "@testing-library/react": "^11.1.0",
