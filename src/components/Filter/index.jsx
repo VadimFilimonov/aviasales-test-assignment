@@ -62,7 +62,7 @@ const Label = styled.label`
   }
 
   ${Checkbox}:checked + &:before {
-    background-image: url("/images/checked.svg");
+    background-image: url("data:image/svg+xml,%3Csvg fill='%232196F3' viewBox='0 0 12 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 8L0 4l1-1 3 3 7-6 1 1-8 7z' /%3E%3C/svg%3E%0A");
     background-repeat: no-repeat;
     background-position: center;
     background-size: 12px auto;
