@@ -6,29 +6,35 @@
 ## Setup
 
 ```sh
-npm install
+make install
 ```
 
 ## Build
 
 ```sh
-npm run build
+make build
 ```
 
 ## Run
 
 ```sh
-npm start
+make develop
 ```
 
 ## Run lint
 
 ```sh
-npm run lint
+make lint
 ```
 
 ## Run tests
 
 ```sh
-npm run test
+make test
+```
+
+## Run tests with watch mode
+
+```sh
+make test-watch
 ```
