@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import styled from 'styled-components';
 
@@ -6,7 +5,7 @@ const Wrapper = styled.section`
   padding: 20px 0;
   background: ${(props) => props.theme.color.white};
   border-radius: 5px;
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, .1);
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
 `;
 
 const Title = styled.h2`
@@ -17,7 +16,7 @@ const Title = styled.h2`
   font-weight: 600;
   font-size: 12px;
   line-height: 1;
-  letter-spacing: .5px;
+  letter-spacing: 0.5px;
   text-transform: uppercase;
 `;
 
@@ -50,7 +49,7 @@ const Label = styled.label`
     margin-top: -10px;
     border: 1px solid #9abbce;
     border-radius: 2px;
-    content: "";
+    content: '';
   }
 
   &:hover {

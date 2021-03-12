@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
 import uuid from 'react-uuid';
 import styled from 'styled-components';
@@ -21,7 +20,9 @@ const Tickets = (props) => {
   useEffect(() => {
     const fetchTickets = async () => {
       try {
-        const response = await axios.get(`https://front-test.beta.aviasales.ru/tickets?searchId=${searchId}`);
+        const response = await axios.get(
+          `https://front-test.beta.aviasales.ru/tickets?searchId=${searchId}`
+        );
         setTickets((prevTickets) => [...prevTickets, ...response.data.tickets]);
         if (response?.data.stop) {
           setFinished(true);
@@ -38,56 +39,48 @@ const Tickets = (props) => {
   }, []);
 
   useEffect(() => {
-    setDisplayedTickets(() => (
+    setDisplayedTickets(() =>
       tickets
-        .filter((ticket) => {
-          const ticketStopsCount = ticket.segments.map((segment) => segment.stops.length);
+        .filter(({ segments }) => {
+          const ticketStopsCount = segments.map(({ stops }) => stops.length);
           const paramsStopsCount = Object.entries(params.stopsCount)
             .filter(([key, value]) => key !== 'all' && value)
             .map(([key]) => Number(key));
           // TODO: add abstract for intersection
-          const intersection = paramsStopsCount.filter(
-            (stopCount) => ticketStopsCount.includes(stopCount),
+          const intersection = paramsStopsCount.filter((stopCount) =>
+            ticketStopsCount.includes(stopCount)
           );
           return intersection > 0;
         })
         .sort((a, b) => {
           if (params.sort === 'cheapest') {
-            if (a.price < b.price) {
-              return -1;
-            }
-            if (a.price > b.price) {
-              return 1;
-            }
-            return 0;
+            return a.price - b.price;
           }
-          const aDuration = a.segments.reduce((acc, { duration }) => acc + duration, 0);
-          const bDuration = b.segments.reduce((acc, { duration }) => acc + duration, 0);
-          if (aDuration < bDuration) {
-            return -1;
-          }
-          if (aDuration > bDuration) {
-            return 1;
-          }
-          return 0;
+          const aDuration = a.segments.reduce(
+            (acc, { duration }) => acc + duration,
+            0
+          );
+          const bDuration = b.segments.reduce(
+            (acc, { duration }) => acc + duration,
+            0
+          );
+          return aDuration - bDuration;
         })
         .slice(0, COUNT_TICKETS_TO_SHOW)
-    ));
+    );
   }, [params, finished]);
 
   if (!finished) {
     // TODO: change to preloader
-    return (
-      <Wrapper>
-        Подождите...
-      </Wrapper>
-    );
+    return <Wrapper>Подождите...</Wrapper>;
   }
 
   return (
     <Wrapper>
       {/* TODO: add message for empty result */}
-      {displayedTickets.map((ticket) => <Ticket ticket={ticket} key={uuid()} />)}
+      {displayedTickets.map((ticket) => (
+        <Ticket ticket={ticket} key={uuid()} />
+      ))}
     </Wrapper>
   );
 };

@@ -29,7 +29,7 @@ const Label = styled.label`
   padding: 0;
   color: ${(props) => props.theme.color.black};
   font-size: 12px;
-  letter-spacing: .5px;
+  letter-spacing: 0.5px;
   text-transform: uppercase;
   background: ${(props) => props.theme.color.white};
   border: 0;

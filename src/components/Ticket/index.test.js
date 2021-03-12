@@ -27,7 +27,7 @@ test('Ticket 1', () => {
   const { asFragment } = render(
     <ThemeProvider>
       <Ticket ticket={ticket} />
-    </ThemeProvider>,
+    </ThemeProvider>
   );
   expect(asFragment()).toMatchSnapshot();
 });

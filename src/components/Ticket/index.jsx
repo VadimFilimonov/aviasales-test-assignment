@@ -4,9 +4,10 @@ import uuid from 'react-uuid';
 import styled from 'styled-components';
 import { convertToTime, convertToDuration } from '../../utilities/date';
 
-const formatPrice = (price) => (
-  new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB' }).format(price).replace(',00', '')
-);
+const formatPrice = (price) =>
+  new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB' })
+    .format(price)
+    .replace(',00', '');
 
 const Wrapper = styled.article`
   display: flex;
@@ -16,7 +17,7 @@ const Wrapper = styled.article`
   padding: 20px;
   background: ${(props) => props.theme.color.white};
   border-radius: 5px;
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, .1);
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
 `;
 
 const Price = styled.div`
@@ -49,7 +50,7 @@ const InfoList = styled.dl`
 const InfoTitle = styled.dt`
   color: ${(props) => props.theme.color.gullGray};
   font-size: 12px;
-  letter-spacing: .5px;
+  letter-spacing: 0.5px;
   text-transform: uppercase;
 
   @media screen and (max-width: 700px) {
@@ -74,16 +75,19 @@ const Ticket = ({ ticket }) => (
     {ticket.segments.map((segment) => (
       <InfoList key={uuid()}>
         <div>
-          <InfoTitle>{[segment.origin, segment.destination].join(' - ')}</InfoTitle>
+          <InfoTitle>
+            {[segment.origin, segment.destination].join(' - ')}
+          </InfoTitle>
           <InfoDescription>{convertToTime(segment.date)}</InfoDescription>
         </div>
         <div>
           <InfoTitle>В пути</InfoTitle>
-          <InfoDescription>{convertToDuration(segment.duration)}</InfoDescription>
+          <InfoDescription>
+            {convertToDuration(segment.duration)}
+          </InfoDescription>
         </div>
         {/* TODO: при отсутствии пересадок в description написать "Прямой" */}
-        {segment.stops.length > 0
-          && (
+        {segment.stops.length > 0 && (
           <div>
             <InfoTitle>
               {/* TODO: add plural */}
@@ -91,7 +95,7 @@ const Ticket = ({ ticket }) => (
             </InfoTitle>
             <InfoDescription>{segment.stops.join(', ')}</InfoDescription>
           </div>
-          )}
+        )}
       </InfoList>
     ))}
   </Wrapper>

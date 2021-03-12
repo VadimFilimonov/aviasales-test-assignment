@@ -10,8 +10,9 @@ import Tickets from './components/Tickets';
 // TODO: transfer styles to separeted files
 const StyledApp = styled.div`
   display: grid;
-  grid-template-areas: "header header"
-    "aside main";
+  grid-template-areas:
+    'header header'
+    'aside main';
   grid-template-columns: 230px 1fr;
   align-content: start;
   box-sizing: border-box;
@@ -23,9 +24,10 @@ const StyledApp = styled.div`
   row-gap: 60px;
 
   @media screen and (max-width: 700px) {
-    grid-template-areas: "header"
-      "aside"
-      "main";
+    grid-template-areas:
+      'header'
+      'aside'
+      'main';
     grid-template-columns: 1fr;
     row-gap: 20px;
   }
@@ -60,7 +62,9 @@ const App = () => {
 
   useEffect(() => {
     const fetchSearchId = async () => {
-      const response = await axios.get('https://front-test.beta.aviasales.ru/search');
+      const response = await axios.get(
+        'https://front-test.beta.aviasales.ru/search'
+      );
       setSearchId(response.data.searchId);
     };
     fetchSearchId();
@@ -108,7 +112,10 @@ const App = () => {
         <Tickets params={params} searchId={searchId} />
       </Main>
       <Aside>
-        <Filter handleChange={handleFilterChange} stopsCount={params.stopsCount} />
+        <Filter
+          handleChange={handleFilterChange}
+          stopsCount={params.stopsCount}
+        />
       </Aside>
     </StyledApp>
   );
